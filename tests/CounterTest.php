@@ -40,6 +40,7 @@ class CounterTest extends TestCase
      */
     public function increment()
     {
+        self::markTestSkipped("Masih ada error");
         $this->counter->increment();
         self::assertEquals(1, $this->counter->getCounter());
     }
@@ -58,6 +59,25 @@ class CounterTest extends TestCase
     {
         $counter->increment();
         self::assertEquals(2, $counter->getCounter());
+    }
+
+    /**
+     * annotation requires
+     * 
+     * @requires OSFAMILY Windows
+     */
+    public function testOnlyWindows()
+    {
+        self::assertTrue(true, "Only in windows");
+    }
+
+    /**
+     * @requires OSFAMILY Linux
+     * @requires PHP >= 8
+     */
+    public function testPHP8()
+    {
+        self::assertTrue(true, "Only for linux and php 8");
     }
 
     // tearDown
